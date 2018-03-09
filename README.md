@@ -10,4 +10,4 @@
 ## 功能类似京东首页
 
 ## 样图
-![图片轮播图1](https://user-images.githubusercontent.com/13915235/37231003-6f5319ce-2424-11e8-8e76-dab249536378.png)
+![图片轮播图1](https://user-images.githubusercontent.com/13915235/37231189-3d090554-2425-11e8-8fe3-be69eeb98a9e.png)
