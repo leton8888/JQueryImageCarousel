@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery Project</title>
+    <style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .container {
+        width: 590px;
+        height: 470px;
+        margin: 50px auto;
+        /*background-color: green;*/
+        border: 2px #333 solid;
+        position: relative;
+    }
+
+    .container .img {}
+
+    .container .img li {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .container .num {
+        position: absolute;
+        width: 100%;
+
+        left: 0px;
+        bottom: 0px;
+        font-size: 0px;
+        text-align: center;
+    }
+
+    .container .num li {
+        width: 20px;
+        height: 20px;
+        font-size: 16px;
+        background-color: green;
+        color: #fff;
+        border-radius: 50%;
+        display: inline-block;
+        line-height: 20px;
+        margin: 0px 3px;
+        cursor: pointer;
+    }
+
+    .container .num li.active {
+    	background-color: #a00;
+    }
+
+    .container .btn {
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 60px;
+        margin-top: -30px;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        
+        line-height: 60px;
+        text-align: center;
+        color:#fff;
+
+        font-size: 40px;
+        font-weight: 100;
+
+        cursor: pointer;
+
+        display: none;
+    }
+
+    .container:hover .btn{
+		display: block;
+    }
+
+    .container .left {
+        left: 0px;
+    }
+
+    .container .right {
+        right: 0px;
+    }
+    </style>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    	$(function () {
+    		$(".num li").
+    	})
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="img">
+            <li><img src="images/1.jpg" alt="1"></li>
+            <li><img src="images/2.jpg" alt="2"></li>
+            <li><img src="images/3.jpg" alt="3"></li>
+            <li><img src="images/4.jpg" alt="4"></li>
+            <li><img src="images/5.jpg" alt="5"></li>
+            <li><img src="images/6.jpg" alt="6"></li>
+        </ul>
+        <ul class="num">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <div class="left btn">&lt;</div>
+        <div class="right btn">&gt;</div>
+    </div>
+</body>
+
+</html>
