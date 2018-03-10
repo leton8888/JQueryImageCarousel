@@ -5,122 +5,184 @@
     <meta charset="UTF-8">
     <title>JQuery Project</title>
     <style>
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-    ul {
-        list-style: none;
-    }
+        ul {
+            list-style: none;
+        }
 
-    .container {
-        width: 590px;
-        height: 470px;
-        margin: 50px auto;
-        /*background-color: green;*/
-        border: 2px #333 solid;
-        position: relative;
-    }
+        .container {
+            width: 590px;
+            height: 470px;
+            margin: 50px auto;
+            /*background-color: green;*/
+            border: 2px #333 solid;
+            position: relative;
+        }
 
-    .container .img {}
+        .container .img li {
+            display: none;
+        }
 
-    .container .img li {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }
+        .container .img li {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-    .container .num {
-        position: absolute;
-        width: 100%;
+        .container .num {
+            position: absolute;
+            width: 100%;
 
-        left: 0px;
-        bottom: 0px;
-        font-size: 0px;
-        text-align: center;
-    }
+            left: 0;
+            bottom: 0;
+            font-size: 0;
+            text-align: center;
+        }
 
-    .container .num li {
-        width: 20px;
-        height: 20px;
-        font-size: 16px;
-        background-color: green;
-        color: #fff;
-        border-radius: 50%;
-        display: inline-block;
-        line-height: 20px;
-        margin: 0px 3px;
-        cursor: pointer;
-    }
+        .container .num li {
+            width: 20px;
+            height: 20px;
+            font-size: 16px;
+            background-color: green;
+            color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            line-height: 20px;
+            margin: 0 3px;
+            cursor: pointer;
+        }
 
-    .container .num li.active {
-    	background-color: #a00;
-    }
+        .container .num li.active {
+            background-color: #a00;
+        }
 
-    .container .btn {
-        position: absolute;
-        top: 50%;
-        width: 30px;
-        height: 60px;
-        margin-top: -30px;
-        background-color: rgba(0, 0, 0, 0.5);
+        .container .btn {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 60px;
+            margin-top: -30px;
+            background-color: rgba(0, 0, 0, 0.5);
 
-        
-        line-height: 60px;
-        text-align: center;
-        color:#fff;
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
 
-        font-size: 40px;
-        font-weight: 100;
+            font-size: 40px;
+            font-weight: 100;
 
-        cursor: pointer;
+            cursor: pointer;
 
-        display: none;
-    }
+            display: none;
+        }
 
-    .container:hover .btn{
-		display: block;
-    }
+        .container:hover .btn {
+            display: block;
+        }
 
-    .container .left {
-        left: 0px;
-    }
+        .container .left {
+            left: 0;
+        }
 
-    .container .right {
-        right: 0px;
-    }
+        .container .right {
+            right: 0;
+        }
     </style>
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
-    	$(function () {
-    		$(".num li").
-    	})
+        $(function () {
+            var idx = 0;
+            $(".num li").mouseover(function () {
+                $(this).addClass("active");
+                $(this).siblings().removeClass("active");
+                idx = $(".num li").index(this);
+                showImg(idx);
+            });
+            var timer = null;
+
+            start();
+
+            function start() {
+                showImg(idx);
+                showPot(idx);
+
+                timer = setInterval(function () {
+                    idx = move(++idx);
+                    showImg(idx);
+                    showPot(idx);
+                }, 1200);
+            }
+
+            function showImg(_idx) {
+                $(".container .img li").eq(_idx).fadeIn(200).siblings().fadeOut(200);
+            }
+
+            function showPot(_idx) {
+                $(".container .num li").eq(_idx).addClass("active").siblings().removeClass("active");
+            }
+
+            function move(_idx) {
+                if (_idx < 0) {
+                    _idx = 5;
+                } else if (_idx > 5) {
+                    _idx = 0;
+                }
+                return _idx;
+            }
+
+            $(".container .left").click(function () {
+                idx = move(--idx);
+                showImg(idx);
+                showPot(idx);
+            });
+
+            $(".container .right").click(function () {
+                idx = move(++idx);
+                showImg(idx);
+                showPot(idx);
+            });
+
+
+            $(".container").mouseover(function () {
+                clearInterval(timer);
+                timer = null;
+            });
+            $(".container").mouseleave(function () {
+                if (timer != null) {
+                    return;
+                }
+                start();
+            });
+        })
 
     </script>
 </head>
 
 <body>
-    <div class="container">
-        <ul class="img">
-            <li><img src="images/1.jpg" alt="1"></li>
-            <li><img src="images/2.jpg" alt="2"></li>
-            <li><img src="images/3.jpg" alt="3"></li>
-            <li><img src="images/4.jpg" alt="4"></li>
-            <li><img src="images/5.jpg" alt="5"></li>
-            <li><img src="images/6.jpg" alt="6"></li>
-        </ul>
-        <ul class="num">
-            <li class="active">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-        </ul>
-        <div class="left btn">&lt;</div>
-        <div class="right btn">&gt;</div>
-    </div>
+<div class="container">
+    <ul class="img">
+        <li><img src="images/1.jpg" alt="1"></li>
+        <li><img src="images/2.jpg" alt="2"></li>
+        <li><img src="images/3.jpg" alt="3"></li>
+        <li><img src="images/4.jpg" alt="4"></li>
+        <li><img src="images/5.jpg" alt="5"></li>
+        <li><img src="images/6.jpg" alt="6"></li>
+    </ul>
+    <ul class="num">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <div class="left btn">&lt;</div>
+    <div class="right btn">&gt;</div>
+</div>
 </body>
 
 </html>
